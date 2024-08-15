@@ -19,12 +19,13 @@ def extract_news(url):
     soup = BeautifulSoup(content, 'html.parser')
     #print(soup.find_all('span', attrs={'class': 'titleline'})[0])
     for i,tag in enumerate(soup.select('span.titleline a')):
-        cnt += ((f"<a href={tag.attrs['href']}>" + str(i+1)+' :: '+tag.text + '</a>' + "\n" + '<br>') if tag.text != 'More' else '')
+        cnt += ((str(i+1)+' :: '+tag.text + f" <a href={tag.attrs['href']}> [link]</a>" + "\n" + '<br>') if tag.text != 'More' else '')
+        #print(cnt)
         #print(tag.prettify)
 
     return cnt
 
-# cnt = extract_news('https://news.ycombinator.com')
+#cnt = extract_news('https://news.ycombinator.com')
 # content += cnt
 # content += '<br>-------------<br>'
 # content += '<br><br>\nEnd of Message'
